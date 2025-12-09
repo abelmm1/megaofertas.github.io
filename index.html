@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abrir MEGA OFERTAS</title>
+    <title>Entrar al Canal</title>
 
     <style>
         body {
@@ -20,16 +20,14 @@
             border-radius: 8px;
             font-size: 20px;
         }
-        button:hover {
-            background-color: #1ebe5d;
-        }
     </style>
 
     <script>
-        function abrirNavegadorExterno() {
-            // Esto obliga a salir del navegador de TikTok:
+        function salirTikTok() {
+            // Este archivo NO debe contener nada de WhatsApp.
+            // Solo abre otra pestaña en Safari/Chrome.
             window.open(
-                "https://megaofertas.github.io/external.html", 
+                "https://megaofertas.github.io/salida.html",
                 "_blank"
             );
         }
@@ -38,9 +36,9 @@
 <body>
 
     <h1>Entrar al Canal MEGA OFERTAS</h1>
-    <p>Para abrir el canal, TikTok necesita salir a tu navegador.</p>
+    <p>Toca el botón para continuar.</p>
 
-    <button onclick="abrirNavegadorExterno()">Abrir WhatsApp</button>
+    <button onclick="salirTikTok()">Continuar</button>
 
 </body>
 </html>
