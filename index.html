@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <title>Redirigiendo...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirigiendo al Canal…</title>
 
-    <!-- Redirección rápida estándar -->
-    <meta http-equiv="refresh" content="0; URL='https://whatsapp.com/channel/0029VbBF6Bc7DAWvQL2T9c1o'" />
-
-    <!-- Redirección inmediata para Safari, Chrome, iOS, Android -->
     <script>
-        window.location.href = "https://whatsapp.com/channel/0029VbBF6Bc7DAWvQL2T9c1o";
-    </script>
-</head>
+        // Enlace de tu canal de WhatsApp
+        const canal = "https://whatsapp.com/channel/0029VbBF6Bc7DAWvQL2T9c1o";
 
+        // Intenta abrir directamente la app
+        window.location.href = "whatsapp://channel/0029VbBF6Bc7DAWvQL2T9c1o";
+
+        // Si la app no abre en 800ms, abre el enlace web
+        setTimeout(() => {
+            window.location.href = canal;
+        }, 800);
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+    </style>
+</head>
 <body>
-    <p>Redirigiendo al canal de WhatsApp...</p>
+    <h2>Abriendo el canal de MEGA OFERTAS…</h2>
+    <p>Si no abre automáticamente, <a href="https://whatsapp.com/channel/0029VbBF6Bc7DAWvQL2T9c1o">haz clic aquí</a>.</p>
 </body>
 </html>
