@@ -2,144 +2,132 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ofertas Virales MX</title>
 
-  <meta name="description" content="Cupones reales. Sin spam. Directo a tu WhatsApp." />
-  <meta property="og:title" content="Ofertas Virales MX" />
-  <meta property="og:description" content="Únete al canal y recibe ofertas reales directo en WhatsApp." />
-  <meta property="og:type" content="website" />
+  <!-- IMPORTANTE: no metas scripts -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            darkbg: '#0b0c10',
-            card: '#15161c',
-            accent: '#25D366'
-          }
-        }
-      }
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
-  </script>
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      background: url("logo.png") center/cover no-repeat;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    p {
+      opacity: 0.9;
+      margin: 10px 0 30px;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    /* BOTONES — CLAVE: <a> LIMPIO */
+    .link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .link:active {
+      background: rgba(255,255,255,0.22);
+    }
+
+    .icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 13px;
+      opacity: 0.7;
+    }
+  </style>
 </head>
 
-<body class="bg-darkbg text-white min-h-screen flex items-center justify-center px-4">
+<body>
+  <div class="container">
 
-  <!-- MAIN CONTENT -->
-  <main class="w-full max-w-md relative z-10">
+    <!-- LOGO -->
+    <div class="logo"></div>
 
-    <header class="text-center mb-10">
-      <h1 class="text-3xl font-extrabold mb-3 tracking-tight">
-        Ofertas Virales MX
-      </h1>
-      <p class="text-white/70 leading-relaxed">
-        Cupones reales.<br>
-        Sin spam.<br>
-        Directo a tu WhatsApp.
-      </p>
-    </header>
+    <!-- TEXTO -->
+    <h1>Ofertas Virales MX</h1>
+    <p>
+      Comunidad de cupones y ofertas reales.<br>
+      Únete a nuestros canales oficiales.
+    </p>
 
-    <!-- WhatsApp CTA -->
-    <section class="mb-8">
-      <a href="https://whatsapp.com/channel/0029VbBF6Bc7DAWvQL2T9c1o"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="block w-full text-center bg-accent text-black font-extrabold text-lg py-5 rounded-2xl shadow-lg shadow-green-500/20 active:scale-95 transition-transform">
-        Entrar al Canal de WhatsApp
-      </a>
-    </section>
+    <!-- LINKS WHATSAPP — DIRECTOS -->
+    <a class="link"
+       href="https://whatsapp.com/channel/0029Va9rGRjAu3aMSKuXnI32">
+      Canal de Cupones
+      <img class="icon" src="whatsapp.png" alt="WhatsApp">
+    </a>
 
-    <!-- Social Links -->
-    <section class="space-y-4">
-      <a href="https://www.instagram.com/megaofertascanal?igsh=NDc4eWM5dW15d3Fl&utm_source=qr"
-         target="_blank"
-         class="flex items-center justify-between bg-card border border-white/10 rounded-xl px-5 py-4">
-        <span class="font-semibold">Instagram</span>
-        <span class="text-white/60 text-sm">Ver ofertas</span>
-      </a>
+    <a class="link"
+       href="https://whatsapp.com/channel/XXXXXXXXXXXX">
+      Canal de Perfumes
+      <img class="icon" src="whatsapp.png" alt="WhatsApp">
+    </a>
 
-      <a href="https://www.tiktok.com/@numbs12?_r=1&_t=ZS-92Gw7giXfoS"
-         target="_blank"
-         class="flex items-center justify-between bg-card border border-white/10 rounded-xl px-5 py-4">
-        <span class="font-semibold">TikTok</span>
-        <span class="text-white/60 text-sm">Videos virales</span>
-      </a>
-    </section>
+    <a class="link"
+       href="https://whatsapp.com/channel/YYYYYYYYYYYY">
+      Canal de Ofertas
+      <img class="icon" src="whatsapp.png" alt="WhatsApp">
+    </a>
 
-  </main>
+    <!-- FACEBOOK -->
+    <a class="link"
+       href="https://facebook.com/tu_pagina">
+      Página de Facebook
+      <img class="icon" src="facebook.png" alt="Facebook">
+    </a>
 
-  <!-- OVERLAY UX -->
-  <div id="inAppOverlay"
-       class="fixed inset-0 z-50 hidden">
-
-    <!-- Fondo -->
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
-
-    <!-- Contenido -->
-    <div class="absolute top-3 right-3 flex flex-col items-end gap-3 text-right text-white">
-
-      <!-- Flecha -->
-      <svg class="w-10 h-10 animate-bounce"
-           fill="none"
-           stroke="currentColor"
-           stroke-width="3"
-           viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 19V5m0 0l-5 5m5-5l5 5"/>
-      </svg>
-
-      <!-- Caja -->
-      <div class="bg-black/85 backdrop-blur px-4 py-4 rounded-xl max-w-[260px] text-sm font-semibold leading-relaxed">
-        <p class="mb-3">
-          Para entrar al canal de WhatsApp:
-          toca los <strong>3 puntos</strong> y elige
-          <span class="text-accent font-bold">“Abrir en navegador”</span>
-        </p>
-
-        <button id="closeOverlay"
-                class="w-full bg-accent text-black py-2 rounded-lg font-bold text-sm active:scale-95 transition">
-          Entendido
-        </button>
-      </div>
-
+    <div class="footer">
+      Abre directo desde TikTok
     </div>
+
   </div>
-
-  <!-- SCRIPT -->
-  <script>
-    (function () {
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      const ref = document.referrer || "";
-      const isInApp =
-        ref.includes("instagram.com") ||
-        ref.includes("tiktok.com") ||
-        ref.includes("facebook.com");
-
-      const overlay = document.getElementById("inAppOverlay");
-      const closeBtn = document.getElementById("closeOverlay");
-
-      if (!isMobile || !overlay) return;
-
-      overlay.classList.remove("hidden");
-
-      // Auto hide after 30s
-      const autoHide = setTimeout(() => {
-        overlay.classList.add("hidden");
-      }, 30000);
-
-      if (closeBtn) {
-        closeBtn.addEventListener("click", () => {
-          clearTimeout(autoHide);
-          overlay.classList.add("hidden");
-        });
-      }
-    })();
-  </script>
-
 </body>
 </html>
