@@ -1,203 +1,398 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Ofertas Oficial - El lugar donde los ahorros para los tuyos suceden</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<title>megaofertasoficial</title>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            color: #fff;
+        }
 
-<meta name="description" content="El lugar donde los ahorros para los tuyos suceden." />
-<meta property="og:title" content="megaofertasoficial" />
-<meta property="og:description" content="El lugar donde los ahorros para los tuyos suceden." />
-<meta property="og:type" content="website" />
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
 
-<!-- ICONOS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        .video-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
 
-<style>
-* {
-  box-sizing: border-box;
-}
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  color: #fff;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+        /* Fallback animated gradient for browsers that can't load video */
+        .gradient-fallback {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
 
-/* VIDEO BACKGROUND */
-.video-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  overflow: hidden;
-}
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-.video-bg video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+        /* Container */
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
 
-/* OVERLAY */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,.65),
-    rgba(0,0,0,.75)
-  );
-  z-index: -1;
-}
+        /* Logo */
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
 
-/* CONTENT */
-.container {
-  max-width: 420px;
-  margin: 0 auto;
-  padding: 48px 20px 40px;
-  text-align: center;
-}
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
 
-.logo {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  background: #000;
-  margin: 0 auto 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 1.1rem;
-}
+        /* Title */
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s ease-out;
+        }
 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-.subtitle {
-  font-size: 1rem;
-  opacity: .85;
-  margin-bottom: 34px;
-  line-height: 1.4;
-}
+        /* Subtitle */
+        .subtitle {
+            font-size: 22px;
+            margin-bottom: 50px;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.6;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1.5s ease-out;
+        }
 
-/* BUTTONS */
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 20px;
-  border-radius: 18px;
-  margin-bottom: 16px;
-  text-decoration: none;
-  color: #fff;
-  font-weight: 600;
-  background: rgba(255,255,255,.08);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,.18);
-  transition: transform .15s ease, background .15s ease;
-}
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-.btn:active {
-  transform: scale(.97);
-}
+        /* Buttons Container */
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 500px;
+            animation: fadeInUp 1.8s ease-out;
+        }
 
-.btn .icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-}
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-/* COLORS */
-.whatsapp .icon {
-  background: #25D366;
-  color: #000;
-}
+        /* Social Button Base */
+        .social-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
 
-.instagram .icon {
-  background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf);
-}
+        .social-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.5s ease;
+        }
 
-.tiktok .icon {
-  background: #000;
-}
+        .social-button:hover::before {
+            left: 100%;
+        }
 
-/* FOOTER NOTE */
-.note {
-  margin-top: 28px;
-  font-size: .85rem;
-  opacity: .8;
-  line-height: 1.4;
-}
-</style>
+        .social-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .social-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Social Icons */
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-button .social-icon {
+            background: #25D366;
+        }
+
+        /* Instagram Button */
+        .instagram-button .social-icon {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        /* TikTok Button */
+        .tiktok-button .social-icon {
+            background: #000;
+        }
+
+        /* Instructions */
+        .instructions {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 16px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            max-width: 500px;
+            line-height: 1.8;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .instructions i {
+            color: #FFD700;
+            margin-right: 8px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .title {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+                padding: 0 10px;
+            }
+
+            .social-button {
+                font-size: 18px;
+                padding: 18px 25px;
+            }
+
+            .logo {
+                width: 100px;
+                height: 100px;
+                font-size: 28px;
+            }
+
+            .instructions {
+                font-size: 14px;
+                padding: 15px;
+            }
+        }
+
+        /* Floating hearts animation */
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 30px;
+            color: rgba(255, 255, 255, 0.3);
+            animation: rise 8s infinite ease-in;
+        }
+
+        @keyframes rise {
+            to {
+                bottom: 110%;
+                transform: translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .heart:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .heart:nth-child(4) { left: 70%; animation-delay: 1s; }
+        .heart:nth-child(5) { left: 90%; animation-delay: 3s; }
+    </style>
 </head>
-
 <body>
+    <!-- Gradient Fallback -->
+    <div class="gradient-fallback"></div>
 
-<!-- VIDEO BACKGROUND -->
-<div class="video-bg">
-  <video autoplay muted loop playsinline>
-    <!-- VIDEO FAMILIA FELIZ (PLACEHOLDER) -->
-    <source src="https://cdn.coverr.co/videos/coverr-happy-family-opening-gifts-9717/1080p.mp4" type="video/mp4">
-  </video>
-</div>
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline id="bgVideo">
+            <source src="https://cdn.pixabay.com/video/2022/12/09/142362-780162710_large.mp4" type="video/mp4">
+        </video>
+    </div>
 
-<div class="overlay"></div>
+    <!-- Floating Hearts -->
+    <div class="hearts">
+        <div class="heart">🎁</div>
+        <div class="heart">💝</div>
+        <div class="heart">🎁</div>
+        <div class="heart">💝</div>
+        <div class="heart">🎁</div>
+    </div>
 
-<!-- CONTENT -->
-<div class="container">
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">MX</div>
 
-  <div class="logo">MX</div>
+        <!-- Title -->
+        <h1 class="title">megaofertasoficial</h1>
 
-  <h1>megaofertasoficial</h1>
+        <!-- Subtitle -->
+        <p class="subtitle">El lugar donde los ahorros para los tuyos suceden...</p>
 
-  <p class="subtitle">
-    El lugar donde los ahorros<br>
-    para los tuyos suceden...
-  </p>
+        <!-- Social Buttons -->
+        <div class="buttons-container">
+            <!-- WhatsApp -->
+            <a href="https://whatsapp.com/channel/0029VbBF6Bc7DAWvQL2T9c1o" class="social-button whatsapp-button" target="_blank" rel="noopener">
+                <span>Canal de Ofertas en WhatsApp</span>
+                <div class="social-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+            </a>
 
-  <!-- WHATSAPP -->
-  <a class="btn whatsapp"
-     href="https://whatsapp.com/channel/0029VbBF6Bc7DAWvQL2T9c1o"
-     target="_blank"
-     rel="noopener noreferrer">
-    <span>Canal de Ofertas en WhatsApp</span>
-    <span class="icon"><i class="fa-brands fa-whatsapp"></i></span>
-  </a>
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/megaofertascanal?igsh=NDc4eWM5dW15d3Fl&utm_source=qr" class="social-button instagram-button" target="_blank" rel="noopener">
+                <span>Instagram</span>
+                <div class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </div>
+            </a>
 
-  <!-- INSTAGRAM -->
-  <a class="btn instagram"
-     href="https://www.instagram.com/megaofertascanal?igsh=NDc4eWM5dW15d3Fl&utm_source=qr"
-     target="_blank"
-     rel="noopener noreferrer">
-    <span>Instagram</span>
-    <span class="icon"><i class="fa-brands fa-instagram"></i></span>
-  </a>
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@numbs12?_r=1&_t=ZS-92Gw7giXfoS" class="social-button tiktok-button" target="_blank" rel="noopener">
+                <span>TikTok</span>
+                <div class="social-icon">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+            </a>
+        </div>
 
-  <!-- TIKTOK -->
-  <a class="btn tiktok"
-     href="https://www.tiktok.com/@numbs12?_r=1&_t=ZS-92Gw7giXfoS"
-     target="_blank"
-     rel="noopener noreferrer">
-    <span>TikTok</span>
-    <span class="icon"><i class="fa-brands fa-tiktok"></i></span>
-  </a>
+        <!-- Instructions -->
+        <div class="instructions">
+            <i class="fas fa-info-circle"></i>
+            <strong>¿No te abre el enlace?</strong><br>
+            Si estás dentro de TikTok o Instagram y el enlace no abre,<br>
+            selecciona <strong>"Abrir en navegador"</strong> desde el menú<br>
+            o copia el enlace y pégalo en Safari, Chrome o tu navegador preferido.
+        </div>
+    </div>
 
-  <div class="note">
-    Si estás dentro de TikTok o Instagram y no abre:<br>
-    toca <strong>⋮</strong> y selecciona <strong>“Abrir en navegador”</strong>.
-  </div>
+    <script>
+        // Ensure video plays on mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('bgVideo');
+            video.play().catch(function(error) {
+                console.log('Video autoplay failed:', error);
+            });
+        });
 
-</div>
-
+        // Add interaction to help video play on iOS
+        document.addEventListener('touchstart', function() {
+            const video = document.getElementById('bgVideo');
+            if (video.paused) {
+                video.play();
+            }
+        }, { once: true });
+    </script>
 </body>
 </html>
