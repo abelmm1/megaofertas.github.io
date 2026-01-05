@@ -467,6 +467,26 @@
         .heart:nth-child(3) { left: 50%; animation-delay: 4s; }
         .heart:nth-child(4) { left: 70%; animation-delay: 1s; }
         .heart:nth-child(5) { left: 90%; animation-delay: 3s; }
+
+        /* Demo Button - para mostrar el hint manualmente */
+        .demo-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #FFD700;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .demo-btn:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -564,40 +584,25 @@
         </div>
     </div>
 
+    <!-- Demo Button - para probar el hint -->
+    <button class="demo-btn" onclick="showHintDemo()">Ver Anuncio Demo</button>
+
     <script>
-        // Detectar si está dentro de una app (TikTok, Instagram, Facebook)
-        function isInAppBrowser() {
-            const ua = navigator.userAgent || navigator.vendor || window.opera;
-            
-            // Detectar TikTok
-            if (ua.indexOf('TikTok') > -1 || ua.indexOf('musical_ly') > -1) {
-                return true;
+        // Mostrar el anuncio siempre al cargar la página
+        function showBrowserHint() {
+            // Verificar si ya vio el hint en esta sesión
+            if (!sessionStorage.getItem('hintShown')) {
+                setTimeout(() => {
+                    document.getElementById('browserHint').classList.add('active');
+                    sessionStorage.setItem('hintShown', 'true');
+                }, 1000); // Mostrar después de 1 segundo
             }
-            
-            // Detectar Instagram
-            if (ua.indexOf('Instagram') > -1) {
-                return true;
-            }
-            
-            // Detectar Facebook
-            if (ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1) {
-                return true;
-            }
-            
-            return false;
         }
 
-        // Mostrar el hint si está en app browser
-        function showBrowserHint() {
-            if (isInAppBrowser()) {
-                // Verificar si ya vio el hint en esta sesión
-                if (!sessionStorage.getItem('hintShown')) {
-                    setTimeout(() => {
-                        document.getElementById('browserHint').classList.add('active');
-                        sessionStorage.setItem('hintShown', 'true');
-                    }, 1000); // Mostrar después de 1 segundo
-                }
-            }
+        // Función para demo (muestra el hint manualmente)
+        function showHintDemo() {
+            sessionStorage.removeItem('hintShown');
+            document.getElementById('browserHint').classList.add('active');
         }
 
         // Cerrar el hint
@@ -612,7 +617,7 @@
                 console.log('Video autoplay failed:', error);
             });
 
-            // Mostrar hint si es necesario
+            // Mostrar hint SIEMPRE
             showBrowserHint();
         });
 
