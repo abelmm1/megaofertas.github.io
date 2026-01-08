@@ -37,229 +37,54 @@
             50% { background-position: 100% 50%; }
         }
 
-        /* Platform Detection Overlay */
-        .platform-overlay {
+        /* Instrucción fija en la parte superior */
+        .top-instruction {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 10000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .platform-overlay.active {
-            display: flex;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .overlay-content {
-            background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
-            border-radius: 30px;
-            padding: 40px 30px;
-            max-width: 450px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            animation: slideUp 0.5s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .overlay-icon {
-            font-size: 70px;
-            margin-bottom: 20px;
-            animation: bounce 1s ease infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .overlay-title {
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            color: #FFD700;
-            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
-        }
-
-        .overlay-text {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: #ddd;
-        }
-
-        .steps-container {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 25px;
-            text-align: left;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .step-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 18px;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-
-        .step-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .step-num {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #000;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 900;
-            margin-right: 15px;
-            flex-shrink: 0;
-            box-shadow: 0 3px 10px rgba(255, 215, 0, 0.4);
-        }
-
-        .step-text {
-            flex: 1;
-            padding-top: 5px;
-        }
-
-        .step-text strong {
-            color: #FFD700;
-        }
-
-        .copy-url-btn {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: #fff;
-            border: none;
-            padding: 18px 35px;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.4);
+            background: rgba(255, 215, 0, 0.15);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding: 12px 20px;
+            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin: 0 auto 15px;
-            width: 100%;
         }
 
-        .copy-url-btn:active {
-            transform: scale(0.95);
+        .instruction-arrow {
+            font-size: 28px;
+            animation: arrowBounce 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
         }
 
-        .copy-url-btn i {
-            font-size: 20px;
-        }
-
-        .close-overlay-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 14px 30px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .close-overlay-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .corner-arrow {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            font-size: 80px;
-            z-index: 10001;
-            animation: arrowPulse 1.2s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.6));
-            pointer-events: none;
-        }
-
-        @keyframes arrowPulse {
+        @keyframes arrowBounce {
             0%, 100% { 
-                transform: translate(0, 0) rotate(-45deg) scale(1);
-                opacity: 1;
+                transform: translate(0, 0) rotate(-45deg);
             }
             50% { 
-                transform: translate(12px, -12px) rotate(-45deg) scale(1.1);
-                opacity: 0.8;
+                transform: translate(8px, -8px) rotate(-45deg);
             }
         }
 
-        /* Flecha adicional más grande para móvil */
-        .giant-arrow {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            width: 120px;
-            height: 120px;
-            z-index: 10002;
-            pointer-events: none;
-            animation: giantArrowPulse 1.5s ease-in-out infinite;
+        .instruction-text {
+            font-size: 13px;
+            font-weight: 700;
+            color: #FFD700;
+            text-align: center;
+            line-height: 1.3;
         }
 
-        .giant-arrow svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
-        }
-
-        @keyframes giantArrowPulse {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-                opacity: 0.9;
-            }
-            50% {
-                transform: translate(8px, -8px) scale(1.05);
-                opacity: 1;
-            }
-        }
-
-        /* Main Container */
+        /* Main Container - ajustado para el espacio superior */
         .container {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px 20px;
+            padding: 80px 20px 30px;
             position: relative;
         }
 
@@ -639,6 +464,18 @@
 
         /* Mobile Responsive */
         @media (max-width: 600px) {
+            .container {
+                padding-top: 70px;
+            }
+
+            .instruction-text {
+                font-size: 11px;
+            }
+
+            .instruction-arrow {
+                font-size: 24px;
+            }
+
             .main-title {
                 font-size: 34px;
             }
@@ -670,52 +507,9 @@
                 font-size: 20px;
             }
 
-            .overlay-content {
-                padding: 30px 20px;
-            }
-
-            .overlay-title {
-                font-size: 24px;
-            }
-
-            .corner-arrow {
-                font-size: 70px;
-                top: 8px;
-                right: 8px;
-            }
-
-            .giant-arrow {
-                width: 100px;
-                height: 100px;
-                top: 12px;
-                right: 12px;
-            }
-
             .whatsapp-mega-btn {
                 padding: 30px 25px;
             }
-        }
-
-        /* Copied confirmation */
-        .copy-success {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #25D366;
-            color: #fff;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 700;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
-            z-index: 10001;
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-
-        .copy-success.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
         }
     </style>
 </head>
@@ -723,48 +517,12 @@
     <!-- Gradient Background -->
     <div class="gradient-bg"></div>
 
-    <!-- Platform Detection Overlay -->
-    <div class="platform-overlay" id="platformOverlay">
-        <!-- Flecha GIGANTE apuntando al menú -->
-        <div class="giant-arrow">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <!-- Flecha gruesa apuntando a la esquina superior derecha -->
-                <path d="M20 80 L80 20 M80 20 L80 50 M80 20 L50 20" 
-                      stroke="#FFD700" 
-                      stroke-width="8" 
-                      stroke-linecap="round" 
-                      stroke-linejoin="round" 
-                      fill="none"/>
-                <!-- Punta de la flecha más grande -->
-                <circle cx="80" cy="20" r="5" fill="#FFD700"/>
-            </svg>
+    <!-- Instrucción fija superior -->
+    <div class="top-instruction">
+        <div class="instruction-arrow">↗</div>
+        <div class="instruction-text">
+            ¿No abre el enlace? Toca los <strong>3 puntos arriba</strong> y selecciona <strong>"Abrir en navegador"</strong>
         </div>
-        <div class="corner-arrow">↗</div>
-        
-        <div class="overlay-content">
-            <div class="corner-arrow">↗</div>
-            <div class="overlay-icon">🚀</div>
-            <h2 class="overlay-title" id="overlayTitle">¡Abre en tu Navegador!</h2>
-            <p class="overlay-text" id="overlayText">Para ver las ofertas, necesitas abrir esta página en tu navegador</p>
-            
-            <div class="steps-container" id="stepsContainer">
-                <!-- Steps will be injected by JavaScript -->
-            </div>
-
-            <button class="copy-url-btn" onclick="copyUrlToClipboard()">
-                <i class="fas fa-copy"></i>
-                Copiar Enlace
-            </button>
-
-            <button class="close-overlay-btn" onclick="closeOverlay()">
-                Ya lo hice / Cerrar
-            </button>
-        </div>
-    </div>
-
-    <!-- Copy Success Message -->
-    <div class="copy-success" id="copySuccess">
-        <i class="fas fa-check-circle"></i> ¡Enlace copiado!
     </div>
 
     <!-- Main Container -->
@@ -812,7 +570,7 @@
 
         <!-- PRIMARY CTA - WhatsApp DOMINANTE -->
         <div class="primary-cta">
-            <a href="https://whatsapp.com/channel/0029VbBF6Bc7DAWvQL2T9c1o" class="whatsapp-mega-btn" id="whatsappBtn" target="_blank" rel="noopener">
+            <a href="https://whatsapp.com/channel/0029VbBF6Bc7DAWvQL2T9c1o" class="whatsapp-mega-btn" target="_blank" rel="noopener">
                 <div class="mega-btn-content">
                     <div class="mega-icon">
                         <!-- WhatsApp Logo SVG -->
@@ -877,169 +635,14 @@
         <!-- Help Text -->
         <p class="help-text">
             <i class="fas fa-shield-alt"></i>
-            <strong>¿El enlace no abre?</strong><br>
-            Toca los 3 puntos arriba a la derecha y selecciona<br>
-            "Abrir en navegador" o "Abrir en Safari/Chrome"
+            <strong>¿Problemas para acceder?</strong><br>
+            Asegúrate de abrir esta página en tu navegador principal<br>
+            (Safari, Chrome, Firefox, etc.)
         </p>
     </div>
 
     <script>
-        // Platform Detection
-        function detectPlatform() {
-            const ua = navigator.userAgent || navigator.vendor || window.opera;
-            
-            if (ua.includes('Instagram')) return 'instagram';
-            if (ua.includes('TikTok') || ua.includes('musical_ly')) return 'tiktok';
-            if (ua.includes('FBAN') || ua.includes('FBAV')) return 'facebook';
-            if (ua.includes('Twitter')) return 'twitter';
-            
-            return 'browser';
-        }
-
-        // Platform-specific instructions
-        const platformInstructions = {
-            instagram: {
-                icon: '📸',
-                title: '¡Abre en tu Navegador!',
-                text: 'Estás viendo esto desde Instagram. Para acceder al canal de WhatsApp:',
-                steps: [
-                    'Toca los <strong>3 puntos</strong> arriba a la derecha ↗',
-                    'Selecciona <strong>"Abrir en Safari"</strong> o <strong>"Abrir en navegador"</strong>',
-                    'Cuando se abra el navegador, toca el botón verde de WhatsApp',
-                    '¡Listo! Ya estás en el canal de ofertas 🎉'
-                ]
-            },
-            tiktok: {
-                icon: '🎵',
-                title: '¡Abre en tu Navegador!',
-                text: 'Estás viendo esto desde TikTok. Para acceder al canal de WhatsApp:',
-                steps: [
-                    'Toca los <strong>3 puntos</strong> arriba a la derecha ↗',
-                    'Selecciona <strong>"Abrir en navegador"</strong> o <strong>"Safari"</strong>',
-                    'En el navegador, toca el botón verde de WhatsApp',
-                    '¡Ya estás dentro! Disfruta las ofertas 🎉'
-                ]
-            },
-            facebook: {
-                icon: '👍',
-                title: '¡Abre en tu Navegador!',
-                text: 'Estás viendo esto desde Facebook. Para acceder al canal de WhatsApp:',
-                steps: [
-                    'Toca los <strong>3 puntos</strong> arriba a la derecha ↗',
-                    'Selecciona <strong>"Abrir en Safari"</strong> o <strong>"Abrir externamente"</strong>',
-                    'Toca el botón verde de WhatsApp',
-                    '¡Listo para ahorrar! 🎉'
-                ]
-            },
-            twitter: {
-                icon: '🐦',
-                title: '¡Abre en tu Navegador!',
-                text: 'Estás viendo esto desde Twitter/X. Para acceder al canal de WhatsApp:',
-                steps: [
-                    'Toca el <strong>ícono de compartir</strong> arriba',
-                    'Selecciona <strong>"Abrir en Safari"</strong> o tu navegador',
-                    'Toca el botón verde de WhatsApp',
-                    '¡A disfrutar las ofertas! 🎉'
-                ]
-            }
-        };
-
-        // Show platform-specific overlay
-        function showPlatformOverlay(platform) {
-            const overlay = document.getElementById('platformOverlay');
-            const instructions = platformInstructions[platform];
-            
-            if (instructions) {
-                document.getElementById('overlayTitle').innerHTML = instructions.icon + ' ' + instructions.title;
-                document.getElementById('overlayText').textContent = instructions.text;
-                
-                const stepsHTML = instructions.steps.map((step, index) => `
-                    <div class="step-item">
-                        <div class="step-num">${index + 1}</div>
-                        <div class="step-text">${step}</div>
-                    </div>
-                `).join('');
-                
-                document.getElementById('stepsContainer').innerHTML = stepsHTML;
-                
-                overlay.classList.add('active');
-            }
-        }
-
-        // Close overlay
-        function closeOverlay() {
-            document.getElementById('platformOverlay').classList.remove('active');
-            sessionStorage.setItem('overlayShown', 'true');
-        }
-
-        // Copy URL to clipboard
-        function copyUrlToClipboard() {
-            const url = window.location.href;
-            
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(url).then(() => {
-                    showCopySuccess();
-                }).catch(err => {
-                    fallbackCopy(url);
-                });
-            } else {
-                fallbackCopy(url);
-            }
-        }
-
-        // Fallback copy method
-        function fallbackCopy(text) {
-            const textArea = document.createElement('textarea');
-            textArea.value = text;
-            textArea.style.position = 'fixed';
-            textArea.style.left = '-999999px';
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            
-            try {
-                document.execCommand('copy');
-                showCopySuccess();
-            } catch (err) {
-                alert('Por favor copia manualmente: ' + text);
-            }
-            
-            document.body.removeChild(textArea);
-        }
-
-        // Show copy success message
-        function showCopySuccess() {
-            const successMsg = document.getElementById('copySuccess');
-            successMsg.classList.add('show');
-            
-            setTimeout(() => {
-                successMsg.classList.remove('show');
-            }, 3000);
-        }
-
-        // WhatsApp button click handler
-        document.getElementById('whatsappBtn').addEventListener('click', function(e) {
-            const platform = detectPlatform();
-            
-            // If user is in a social media app, show instructions
-            if (platform !== 'browser' && !sessionStorage.getItem('overlayShown')) {
-                e.preventDefault();
-                showPlatformOverlay(platform);
-            }
-            // Otherwise, let the link work normally
-        });
-
-        // Check platform on load
         document.addEventListener('DOMContentLoaded', function() {
-            const platform = detectPlatform();
-            
-            // Show overlay automatically for social media apps (only once per session)
-            if (platform !== 'browser' && !sessionStorage.getItem('overlayShown')) {
-                setTimeout(() => {
-                    showPlatformOverlay(platform);
-                }, 1500);
-            }
-
             // Update ticker with dynamic times
             const tickerItems = [
                 'iPhone 15 Pro -40%',
