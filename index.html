@@ -1,398 +1,517 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega Ofertas Oficial - El lugar donde los ahorros para los tuyos suceden</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🧙‍♂️ El Mago de las Ofertas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --gold-light: #F4E4BA;
+      --ink: #080c14;
+      --white: #ffffff;
+      --white-soft: rgba(255,255,255,.85);
+      --glass: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.10);
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
-            color: #fff;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html, body {
+      height: 100%;
+    }
 
-        /* Video Background */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--white);
+      background: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .video-background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-        }
+    /* ===== FONDO CIELO NOCTURNO ===== */
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(ellipse 100% 60% at 50% 0%, rgba(40, 60, 100, .3), transparent 50%),
+        radial-gradient(ellipse 80% 40% at 30% 20%, rgba(212, 175, 55, .06), transparent 50%),
+        radial-gradient(ellipse 80% 40% at 70% 20%, rgba(100, 140, 200, .08), transparent 50%),
+        linear-gradient(180deg, #05080f 0%, #0a1020 40%, #050810 100%);
+    }
 
-        .video-background video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    /* Estrellas */
+    .stars {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image:
+        radial-gradient(1px 1px at 15% 15%, rgba(255,255,255,.5), transparent),
+        radial-gradient(1px 1px at 35% 8%, rgba(255,255,255,.3), transparent),
+        radial-gradient(1px 1px at 55% 20%, rgba(255,255,255,.4), transparent),
+        radial-gradient(1px 1px at 75% 12%, rgba(255,255,255,.35), transparent),
+        radial-gradient(1px 1px at 90% 25%, rgba(255,255,255,.3), transparent),
+        radial-gradient(1px 1px at 25% 30%, rgba(255,255,255,.25), transparent),
+        radial-gradient(1px 1px at 65% 35%, rgba(255,255,255,.3), transparent),
+        radial-gradient(1px 1px at 85% 40%, rgba(255,255,255,.2), transparent),
+        radial-gradient(1px 1px at 10% 45%, rgba(255,255,255,.25), transparent),
+        radial-gradient(1px 1px at 45% 50%, rgba(255,255,255,.2), transparent);
+      opacity: .7;
+    }
 
-        /* Fallback animated gradient for browsers that can't load video */
-        .gradient-fallback {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            z-index: -2;
-        }
+    /* ===== CASTILLO ===== */
+    .castle-scene {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 55vh;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    /* Niebla base */
+    .fog {
+      position: absolute;
+      bottom: 0;
+      left: -10%;
+      right: -10%;
+      height: 40%;
+      background: linear-gradient(180deg, transparent 0%, rgba(20,30,50,.6) 40%, rgba(10,15,25,.95) 100%);
+      filter: blur(20px);
+    }
 
-        /* Container */
-        .container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
+    /* Torre izquierda */
+    .tower-left {
+      position: absolute;
+      bottom: 0;
+      left: 12%;
+      width: 14%;
+      height: 70%;
+      background: linear-gradient(180deg, rgba(25,35,55,.85) 0%, rgba(15,22,35,.95) 100%);
+      border-radius: 8px 8px 0 0;
+      box-shadow: inset 0 20px 40px rgba(255,255,255,.03);
+    }
 
-        /* Logo */
-        .logo {
-            width: 120px;
-            height: 120px;
-            background: #000;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: float 3s ease-in-out infinite;
-        }
+    .tower-left::before {
+      content: "";
+      position: absolute;
+      top: -12%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130%;
+      height: 20%;
+      background: linear-gradient(180deg, rgba(25,35,55,.9), rgba(25,35,55,.85));
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
+    /* Almenas torre izquierda */
+    .tower-left::after {
+      content: "";
+      position: absolute;
+      top: -2%;
+      left: 0;
+      right: 0;
+      height: 8%;
+      background: repeating-linear-gradient(90deg,
+        rgba(25,35,55,.9) 0 18%,
+        transparent 18% 28%
+      );
+    }
 
-        /* Title */
-        .title {
-            font-size: 48px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-            animation: fadeInDown 1s ease-out;
-        }
+    /* Torre derecha */
+    .tower-right {
+      position: absolute;
+      bottom: 0;
+      right: 12%;
+      width: 14%;
+      height: 70%;
+      background: linear-gradient(180deg, rgba(25,35,55,.85) 0%, rgba(15,22,35,.95) 100%);
+      border-radius: 8px 8px 0 0;
+      box-shadow: inset 0 20px 40px rgba(255,255,255,.03);
+    }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .tower-right::before {
+      content: "";
+      position: absolute;
+      top: -12%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130%;
+      height: 20%;
+      background: linear-gradient(180deg, rgba(25,35,55,.9), rgba(25,35,55,.85));
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    }
 
-        /* Subtitle */
-        .subtitle {
-            font-size: 22px;
-            margin-bottom: 50px;
-            text-align: center;
-            max-width: 600px;
-            line-height: 1.6;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 1.5s ease-out;
-        }
+    .tower-right::after {
+      content: "";
+      position: absolute;
+      top: -2%;
+      left: 0;
+      right: 0;
+      height: 8%;
+      background: repeating-linear-gradient(90deg,
+        rgba(25,35,55,.9) 0 18%,
+        transparent 18% 28%
+      );
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    /* Cuerpo principal */
+    .keep {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 45%;
+      height: 55%;
+      background: linear-gradient(180deg, rgba(30,42,65,.8) 0%, rgba(18,26,40,.95) 100%);
+      border-radius: 6px 6px 0 0;
+      box-shadow: inset 0 30px 60px rgba(255,255,255,.02);
+    }
 
-        /* Buttons Container */
-        .buttons-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-            max-width: 500px;
-            animation: fadeInUp 1.8s ease-out;
-        }
+    /* Almenas cuerpo principal */
+    .keep::before {
+      content: "";
+      position: absolute;
+      top: -4%;
+      left: 0;
+      right: 0;
+      height: 8%;
+      background: repeating-linear-gradient(90deg,
+        rgba(30,42,65,.85) 0 12%,
+        transparent 12% 18%
+      );
+    }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    /* Puerta grande */
+    .gate {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20%;
+      height: 35%;
+      background: linear-gradient(180deg, rgba(15,20,30,.9) 0%, rgba(10,14,22,.95) 100%);
+      border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+      box-shadow: inset 0 10px 30px rgba(0,0,0,.5);
+    }
 
-        /* Social Button Base */
-        .social-button {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 30px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50px;
-            text-decoration: none;
-            color: #fff;
-            font-size: 20px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
+    /* Ventanas iluminadas */
+    .window {
+      position: absolute;
+      border-radius: 50% 50% 4px 4px / 40% 40% 4px 4px;
+      background: radial-gradient(ellipse at 50% 30%, rgba(255,200,100,.7), rgba(255,180,80,.2) 60%, transparent 80%);
+      box-shadow: 0 0 20px rgba(255,180,80,.3), 0 0 40px rgba(255,180,80,.15);
+      animation: windowFlicker 4s ease-in-out infinite;
+    }
 
-        .social-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: left 0.5s ease;
-        }
+    @keyframes windowFlicker {
+      0%, 100% { opacity: .7; }
+      50% { opacity: .9; }
+    }
 
-        .social-button:hover::before {
-            left: 100%;
-        }
+    .window-1 { width: 12px; height: 18px; top: 25%; left: 25%; animation-delay: 0s; }
+    .window-2 { width: 14px; height: 20px; top: 20%; left: 50%; transform: translateX(-50%); animation-delay: 1s; }
+    .window-3 { width: 12px; height: 18px; top: 25%; right: 25%; animation-delay: 2s; }
+    .window-4 { width: 10px; height: 16px; top: 30%; left: 30%; animation-delay: 0.5s; }
+    .window-5 { width: 10px; height: 16px; top: 30%; right: 30%; animation-delay: 1.5s; }
 
-        .social-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.6);
-        }
+    /* Ventanas torres */
+    .tower-window {
+      position: absolute;
+      width: 10px;
+      height: 16px;
+      border-radius: 50% 50% 3px 3px / 40% 40% 3px 3px;
+      background: radial-gradient(ellipse at 50% 30%, rgba(255,200,100,.6), rgba(255,180,80,.15) 60%, transparent 80%);
+      box-shadow: 0 0 15px rgba(255,180,80,.25);
+      animation: windowFlicker 4s ease-in-out infinite;
+    }
 
-        .social-button span {
-            position: relative;
-            z-index: 1;
-        }
+    .tw-1 { top: 25%; left: 50%; transform: translateX(-50%); animation-delay: 0.3s; }
+    .tw-2 { top: 45%; left: 50%; transform: translateX(-50%); animation-delay: 1.3s; }
+    .tw-3 { top: 25%; left: 50%; transform: translateX(-50%); animation-delay: 0.8s; }
+    .tw-4 { top: 45%; left: 50%; transform: translateX(-50%); animation-delay: 1.8s; }
 
-        /* Social Icons */
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            position: relative;
-            z-index: 1;
-        }
+    /* Aura mágica sobre castillo */
+    .castle-aura {
+      position: absolute;
+      bottom: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 60%;
+      background: radial-gradient(ellipse at 50% 80%, rgba(212,175,55,.08) 0%, transparent 60%);
+      filter: blur(30px);
+      animation: auraGlow 5s ease-in-out infinite;
+    }
 
-        /* WhatsApp Button */
-        .whatsapp-button .social-icon {
-            background: #25D366;
-        }
+    @keyframes auraGlow {
+      0%, 100% { opacity: .6; }
+      50% { opacity: 1; }
+    }
 
-        /* Instagram Button */
-        .instagram-button .social-icon {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-        }
+    /* ===== BARRA SUPERIOR ===== */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 14px 20px;
+      background: linear-gradient(90deg, rgba(212,175,55,.06), rgba(100,140,200,.08), rgba(212,175,55,.06));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(12px);
+    }
 
-        /* TikTok Button */
-        .tiktok-button .social-icon {
-            background: #000;
-        }
+    .top-bar-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,.9);
+      text-align: center;
+      line-height: 1.3;
+    }
 
-        /* Instructions */
-        .instructions {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 16px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            max-width: 500px;
-            line-height: 1.8;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+    .top-bar-text strong {
+      color: var(--gold);
+    }
 
-        .instructions i {
-            color: #FFD700;
-            margin-right: 8px;
-        }
+    .top-bar-arrow {
+      font-size: 24px;
+      color: var(--gold);
+      filter: drop-shadow(0 0 10px rgba(212,175,55,.5));
+      animation: arrowBounce 1.5s ease-in-out infinite;
+    }
 
-        /* Mobile Responsive */
-        @media (max-width: 600px) {
-            .title {
-                font-size: 32px;
-            }
+    @keyframes arrowBounce {
+      0%, 100% { transform: translate(0, 0) rotate(-45deg); opacity: .9; }
+      50% { transform: translate(6px, -6px) rotate(-45deg); opacity: 1; }
+    }
 
-            .subtitle {
-                font-size: 18px;
-                padding: 0 10px;
-            }
+    /* ===== CONTENEDOR PRINCIPAL ===== */
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 80px 24px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
 
-            .social-button {
-                font-size: 18px;
-                padding: 18px 25px;
-            }
+    /* ===== TÍTULO ===== */
+    .title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
 
-            .logo {
-                width: 100px;
-                height: 100px;
-                font-size: 28px;
-            }
+    .subtitle {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--white-soft);
+      margin-bottom: 48px;
+      opacity: .75;
+    }
 
-            .instructions {
-                font-size: 14px;
-                padding: 15px;
-            }
-        }
+    /* ===== BOTONES ===== */
+    .buttons {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
 
-        /* Floating hearts animation */
-        .hearts {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: all .2s ease;
+    }
 
-        .heart {
-            position: absolute;
-            bottom: -50px;
-            font-size: 30px;
-            color: rgba(255, 255, 255, 0.3);
-            animation: rise 8s infinite ease-in;
-        }
+    .btn svg {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
 
-        @keyframes rise {
-            to {
-                bottom: 110%;
-                transform: translateX(100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
+    /* WhatsApp */
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: var(--white);
+      box-shadow: 0 8px 32px rgba(37, 211, 102, .25);
+    }
 
-        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .heart:nth-child(2) { left: 30%; animation-delay: 2s; }
-        .heart:nth-child(3) { left: 50%; animation-delay: 4s; }
-        .heart:nth-child(4) { left: 70%; animation-delay: 1s; }
-        .heart:nth-child(5) { left: 90%; animation-delay: 3s; }
-    </style>
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(37, 211, 102, .35);
+    }
+
+    .btn-whatsapp:active { transform: translateY(0); }
+    .btn-whatsapp svg { fill: var(--white); }
+
+    /* Instagram */
+    .btn-instagram {
+      background: linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%);
+      color: var(--white);
+      box-shadow: 0 8px 32px rgba(225, 48, 108, .2);
+    }
+
+    .btn-instagram:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(225, 48, 108, .3);
+    }
+
+    .btn-instagram:active { transform: translateY(0); }
+    .btn-instagram svg { fill: var(--white); }
+
+    /* TikTok */
+    .btn-tiktok {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      color: var(--white);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-tiktok:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.18);
+    }
+
+    .btn-tiktok:active { transform: translateY(0); }
+    .btn-tiktok svg { fill: var(--white); }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      margin-top: 48px;
+      font-size: 12px;
+      color: rgba(255,255,255,.3);
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 480px) {
+      .container {
+        padding: 72px 20px 32px;
+      }
+
+      .title {
+        font-size: 26px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        margin-bottom: 40px;
+      }
+
+      .btn {
+        padding: 16px 20px;
+        font-size: 15px;
+        border-radius: 14px;
+      }
+
+      .top-bar {
+        padding: 12px 16px;
+      }
+
+      .top-bar-text {
+        font-size: 11.5px;
+      }
+
+      .top-bar-arrow {
+        font-size: 22px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Gradient Fallback -->
-    <div class="gradient-fallback"></div>
+  <div class="bg"></div>
+  <div class="stars"></div>
 
-    <!-- Video Background -->
-    <div class="video-background">
-        <video autoplay muted loop playsinline id="bgVideo">
-            <source src="https://cdn.pixabay.com/video/2022/12/09/142362-780162710_large.mp4" type="video/mp4">
-        </video>
+  <!-- Castillo -->
+  <div class="castle-scene">
+    <div class="castle-aura"></div>
+    <div class="fog"></div>
+    
+    <div class="tower-left">
+      <div class="tower-window tw-1"></div>
+      <div class="tower-window tw-2"></div>
+    </div>
+    
+    <div class="keep">
+      <div class="window window-1"></div>
+      <div class="window window-2"></div>
+      <div class="window window-3"></div>
+      <div class="window window-4"></div>
+      <div class="window window-5"></div>
+      <div class="gate"></div>
+    </div>
+    
+    <div class="tower-right">
+      <div class="tower-window tw-3"></div>
+      <div class="tower-window tw-4"></div>
+    </div>
+  </div>
+
+  <!-- Barra superior -->
+  <div class="top-bar">
+    <span class="top-bar-text">
+      ¿No abre el enlace? Toca los <strong>3 puntos</strong> arriba y selecciona <strong>"Abrir en navegador"</strong>
+    </span>
+    <span class="top-bar-arrow">↗</span>
+  </div>
+
+  <main class="container">
+    <h1 class="title">Bienvenido al sitio del<br>Mago de las Ofertas</h1>
+    <p class="subtitle">Descubre las mejores ofertas antes que nadie</p>
+
+    <div class="buttons">
+      <a href="https://whatsapp.com/channel/0029VbBF6Bc7DAWvQL2T9c1o" class="btn btn-whatsapp" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        Canal de WhatsApp
+      </a>
+
+      <a href="https://www.instagram.com/megaofertascanal" class="btn btn-instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        Instagram
+      </a>
+
+      <a href="https://www.tiktok.com/@numbs12" class="btn btn-tiktok" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+        </svg>
+        TikTok
+      </a>
     </div>
 
-    <!-- Floating Hearts -->
-    <div class="hearts">
-        <div class="heart">🎁</div>
-        <div class="heart">💝</div>
-        <div class="heart">🎁</div>
-        <div class="heart">💝</div>
-        <div class="heart">🎁</div>
-    </div>
-
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Logo -->
-        <div class="logo">MX</div>
-
-        <!-- Title -->
-        <h1 class="title">megaofertasoficial</h1>
-
-        <!-- Subtitle -->
-        <p class="subtitle">El lugar donde los ahorros para los tuyos suceden...</p>
-
-        <!-- Social Buttons -->
-        <div class="buttons-container">
-            <!-- WhatsApp -->
-            <a href="https://whatsapp.com/channel/0029VbBF6Bc7DAWvQL2T9c1o" class="social-button whatsapp-button" target="_blank" rel="noopener">
-                <span>Canal de Ofertas en WhatsApp</span>
-                <div class="social-icon">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-            </a>
-
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/megaofertascanal?igsh=NDc4eWM5dW15d3Fl&utm_source=qr" class="social-button instagram-button" target="_blank" rel="noopener">
-                <span>Instagram</span>
-                <div class="social-icon">
-                    <i class="fab fa-instagram"></i>
-                </div>
-            </a>
-
-            <!-- TikTok -->
-            <a href="https://www.tiktok.com/@numbs12?_r=1&_t=ZS-92Gw7giXfoS" class="social-button tiktok-button" target="_blank" rel="noopener">
-                <span>TikTok</span>
-                <div class="social-icon">
-                    <i class="fab fa-tiktok"></i>
-                </div>
-            </a>
-        </div>
-
-        <!-- Instructions -->
-        <div class="instructions">
-            <i class="fas fa-info-circle"></i>
-            <strong>¿No te abre el enlace?</strong><br>
-            Si estás dentro de TikTok o Instagram y el enlace no abre,<br>
-            selecciona <strong>"Abrir en navegador"</strong> desde el menú<br>
-            o copia el enlace y pégalo en Safari, Chrome o tu navegador preferido.
-        </div>
-    </div>
-
-    <script>
-        // Ensure video plays on mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const video = document.getElementById('bgVideo');
-            video.play().catch(function(error) {
-                console.log('Video autoplay failed:', error);
-            });
-        });
-
-        // Add interaction to help video play on iOS
-        document.addEventListener('touchstart', function() {
-            const video = document.getElementById('bgVideo');
-            if (video.paused) {
-                video.play();
-            }
-        }, { once: true });
-    </script>
+    <p class="footer">© 2025 Mega Ofertas</p>
+  </main>
 </body>
 </html>
